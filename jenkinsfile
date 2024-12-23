@@ -1,0 +1,23 @@
+pipeline {
+    agent { node { label 'Agent-1' } } 
+    environment{
+        //here if you create any variable you will have global access, since its environment no need of def
+        packageVersion = ''
+    }
+    stages {
+        stage('Deploy') {
+            steps {
+                sh 'ls -ltr'
+                echo "Deploying"
+        
+            }
+        } 
+    }
+    post{
+        always{
+            echo 'cleaning up workspace'
+            deleteDir()
+        }
+    }
+}
+
