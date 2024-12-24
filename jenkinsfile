@@ -1,12 +1,13 @@
 pipeline {
     agent { node { label 'Agent-1' } } 
     parameters {
-        string(name: 'Version', defaultValue: '1.0.1', description: 'hello')
+        string(name: 'version', defaultValue: '1.0.1', description: 'hello')
     }
     stages {
         stage('Deploy') {
             steps {
                 sh 'ls -ltr'
+                echo "version from params: ${params.version}"
                 //build job: "../catalogue-deploy", wait: true
                 echo "Deploying"
         
