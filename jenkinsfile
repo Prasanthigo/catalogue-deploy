@@ -19,7 +19,7 @@ pipeline {
                 sh """
                  pwd
                  cd terraform
-                 terraform init -reconfigure
+                 terraform init -reconfigure -lock=false
                  """
             }
         }
