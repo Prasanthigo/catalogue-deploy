@@ -10,6 +10,7 @@ pipeline {
                 echo "version from params: ${params.version}"
                 //build job: "../catalogue-deploy", wait: true
                 echo "Deploying"
+                sh 'pwd'
         
             }
         } 
