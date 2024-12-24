@@ -31,6 +31,14 @@ pipeline {
                  """
             }
         }
+        stage('approve') {
+            steps {
+                sh """
+                 cd terraform
+                 terraform approve --auto-approve -lock=false
+                 """
+            }
+        }
     }
     post{
         always{
