@@ -8,3 +8,32 @@ resource "aws_instance" "catalogue" {
     }
 
 }
+
+resource "null_resource" "catalogue" {
+    triggers = {
+        instance_id = "i-035179171b36275d5"
+    }
+    connection {
+        type = "ssh"
+        user = "centos"
+        password = "DevOps321"
+        host = "44.206.244.145"
+    }
+    #copy the file
+    provisioner "file" {
+        source = "catalogue.sh"
+        destination = "/tmp/catalogue.sh"
+
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+            "sudo chmod +x /tmp/catalogue.sh",
+            "sudo sh /tmp/catalogue.sh ${var.app_version} ${var.env}"
+        ]
+    }
+}
+
+output "app_version" {
+    value = var.app_version
+}

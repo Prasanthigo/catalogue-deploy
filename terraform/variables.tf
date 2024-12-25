@@ -14,3 +14,6 @@ variable "common_tags" {
         Terraform = true
     }
 }
+variable "app_version" {
+    default = "100.0.0"
+}
